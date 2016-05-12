@@ -2,26 +2,34 @@
 #include <string.h>
 #include <stdlib.h>
 
-char* reverse_str(const char *str)
+void reverse_str(const char *str, int size, char *revstr)
 {
-	int size = strlen(str) - 1;
-	int k = size;
-	int i;
-	char *revstr = malloc(size + 1); //memory leak
+        int k = size;
+        int i;
 
-	for (i=0; i <= size; i++, k--) {
-		revstr[i] = str[k];
-	}
-
-	return revstr;
+        for (i=0; i <= size; i++, k--) {
+                revstr[i] = str[k];
+        }
 }
 
-int main(void)
+int main(int argc, char *argv[])
 {
-	char *str = "hello";
+        if (argc != 2) {
+                printf("usage: ./reversestr string\n");
+                exit(1);
+        }
 
-	printf("*str = %s\n", str);
-	printf("*str reversed = %s\n", reverse_str(str));	
+        char *str1 = argv[1];
+        int size = strlen(str1) - 1;
+        char *str2 = malloc(size + 1);
 
-	return 0;
+        reverse_str(str1, size, str2);
+
+        printf("str1 = %s\n", str1);
+        printf("str1 reversed = %s\n", str2);
+
+        free(str2);
+
+        return 0;
 }
+
