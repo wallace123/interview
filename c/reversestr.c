@@ -30,6 +30,6 @@ int main(int argc, char *argv[])
 
         free(str2);
 
-        return 0;
+        exit(0);
 }
 
